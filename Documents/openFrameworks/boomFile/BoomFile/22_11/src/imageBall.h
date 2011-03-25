@@ -11,9 +11,8 @@ public:
 	static void loadImage();
 	void draw();
 	void dropRedball();
-	void dropRedball2();
-
 	void drawRedBall();
+	void dropRedball2();
 	void destroyRedBall();
 	
 	ofxBox2d*						box2d;

@@ -12,5 +12,6 @@ void soundGears::loadGears(){
 		cout << "just loaded gears" << endl;
 		loadedSound = true;
 	}
+	gears.setLoop(true);
 	gears.play();
 }

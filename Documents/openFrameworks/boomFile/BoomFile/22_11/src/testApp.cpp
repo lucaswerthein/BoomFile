@@ -170,6 +170,7 @@ void testApp::update(){
 		
 	if(testApp::worldCounter==crazyTime){
 		machine.loadSound("motorLong.mp3");
+		machine.setLoop(true);
 		machine.play();
 		//------------------------SKETCH01------------------------//
 		scenethree.update();
@@ -213,13 +214,19 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	ofScale(0.8, 0.8, 1);
+	ofScale(1.5058, 1.5058, 1.5058);
 	box2d.draw();
 	bkgImage::drawImage();
 	if(testApp::worldCounter<=crazyTime){
 
 	//------------------------DOMINOS------------------------//
 	bigDominos.draw();
+	string infoDomino = "";
+	infoDomino += "FPS: "+ofToString(ofGetFrameRate())+"\n";
+	infoDomino += "Total Bodies: "+ofToString(box2d.getBodyCount())+"\n";
+	infoDomino += "Press Space to push domino""\n";
+	ofSetColor(255, 255, 255);
+	ofDrawBitmapString(infoDomino, 900, 30);
 	}
 	//-------------------------------------------------------//
 	
@@ -252,7 +259,6 @@ void testApp::draw(){
 	string info = "";
 	info += "FPS: "+ofToString(ofGetFrameRate())+"\n";
 	info += "Total Bodies: "+ofToString(box2d.getBodyCount())+"\n";
-	info += "Press z to load ball on right side""\n";
 	info += "Press b to load ball""\n";
 	info += "Press c to create BallHolder""\n";
 	info += "Press d to destroy BallHolder""\n";
@@ -279,7 +285,7 @@ void testApp::keyPressed(int key){
 	}
 	if(key == 'z'){
 		pngBall.dropRedball2();
-	}
+	}	
 	if(key == 'c'){
 		scenetwo.ballHolder();							
 	}

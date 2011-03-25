@@ -64,7 +64,7 @@ void imageBall::dropRedball(){
 
 //--------------------------------------------------------------
 void imageBall::dropRedball2(){
-	float r = 7;		// a random radius 4px - 20px
+	float r = 6;		// a random radius 4px - 20px
 	imageBall ourBall;
 	ourBall.setPhysics(0.1, 0.0 ,0.00);	
 	ourBall.loadImage();

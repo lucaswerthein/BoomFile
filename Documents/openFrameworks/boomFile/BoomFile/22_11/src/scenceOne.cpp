@@ -28,6 +28,9 @@ void scenceOne::update(){
 	worldRects(middlePos+280, 330, 30, 1, 0.7, 1.58);
 	worldRects(middlePos+1330, 60, 30, 1, -0.82, 0.30);
 
+
+	
+
 	
 	/////////////////////////DRAW BRIDGE//////////////////////////
 	bridge();	

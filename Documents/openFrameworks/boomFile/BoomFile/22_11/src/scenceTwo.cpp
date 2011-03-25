@@ -24,17 +24,15 @@ void scenceTwo::update(){
 	ballJointFunction(0, 1, length+500, height+100, length+350, height+50, 0.0, 0.53, 0.0, smallRadius, 10, 0.53, 0.0, bigRadius);
 	ballJointFunction(2, 3, length+1200, height+260, length+1130, height+230, 0.0, 0.53, 0.0, smallRadius-5, 10, 0.53, 0.0, bigRadius-35);
 	ballJointFunction(4, 5, length+1000, height-20, length+800, height-26, 0.0, 0.53, 0.0, smallRadius-7, 10, 0.53, 0.0, bigRadius+10);
-	//ballJointFunction(6, 7, length+770, height+250, length+680, height+230, 0.0, 0.53, 0.0, smallRadius-5, 10, 0.53, 0.0, bigRadius-35);
 	
 	worldRects(rightPos+20, 0, 1, 20, 0.0, 0);
-	worldRects(rightPos+40, 0, 1, 20, 0.0, 0);
 	worldRects(rightPos+10, 45, 100, 1, 0.2, 0.0);
 	worldRects(rightPos+110, 120, 60, 1, 1.2, 0.0);
 	worldRects(rightPos+210, 120, 60, 1, -1.2, 0.0);
 	ballHolder();
+	worldRects(rightPos+40, 0, 1, 20, 0.0, 0);
 	worldRects(rightPos+140, 300, 100, 1, .6, 2.5);
 	worldRects(2115, 300, 20, 1, .5, 1.4);
-
 	revolJoint3(0, rightPos+135, 62, 5, 0, rightPos+135, 62, 0, -9);	
 	
 }
@@ -52,8 +50,7 @@ void scenceTwo::draw(){
 	}
 	
 	//////////////DRAW BOXES//////////////
-	for(int i=2; i<lineRects.size(); i++) {
-		//	for(int i=2; i<lineRects.size(); i+=3) {
+	for(int i=5; i<lineRects.size(); i++) {
 		lineRects[i].draw();
 
 	}
@@ -61,11 +58,6 @@ void scenceTwo::draw(){
 	//////////////DRAW CROSS//////////////
 	for(int i=0; i<CROSS; i++) {
 		rect3[i]->draw();
-	}
-	
-	//////////////DRAW BALL CROSS//////////////
-	for(int i=0; i<CROSSCIRCLES; i++) {
-		//ball3[i]->draw();
 	}
 	
 	bucket.draw(rightPos+200,150, bucket.getWidth()/3, bucket.getHeight()/3);
@@ -141,7 +133,6 @@ void scenceTwo::worldRects(int posX, int posY, int w, int h, float ang, float sp
 	platformW = w;
 	platformH = h;
 	
-	//ofxBox2dRect lineReplacer;
 	platform lineReplacer;
 	lineReplacer.setPhysics(0, spring, 0.1);
 	lineReplacer.setup("lineBox2",box2d->getWorld(), posX , posY, w, h, ang);

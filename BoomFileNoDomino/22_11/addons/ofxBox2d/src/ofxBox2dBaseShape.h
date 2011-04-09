@@ -165,7 +165,9 @@ public:
 	//------------------------------------------------
 	virtual void addForce(ofPoint pt, ofPoint amt) {
 		if(body != NULL) {
-			body->ApplyForce(b2Vec2(pt.x/OFX_BOX2D_SCALE, pt.y/OFX_BOX2D_SCALE), b2Vec2(amt.x, amt.y));
+			//body->ApplyForce(b2Vec2(pt.x/OFX_BOX2D_SCALE, pt.y/OFX_BOX2D_SCALE), b2Vec2(amt.x, amt.y));
+			body->ApplyForce(b2Vec2(amt.x, amt.y), b2Vec2(pt.x/OFX_BOX2D_SCALE, pt.y/OFX_BOX2D_SCALE));
+
 		}
 	}
 	

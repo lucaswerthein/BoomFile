@@ -13,6 +13,8 @@ public:
 	static bool loadedImage;
 	static		ofImage pipeOne;
 	static		ofImage pipeTwo;
+	static		ofImage pipe3;
+
 
 	
 };

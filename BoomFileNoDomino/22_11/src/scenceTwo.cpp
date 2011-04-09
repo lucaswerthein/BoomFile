@@ -9,6 +9,14 @@ void scenceTwo::setup(ofxBox2d* box2d){
 	ofSetRectMode(OF_RECTMODE_CENTER);
 	bucket.setImageType(OF_IMAGE_COLOR);
 	bucket.loadImage("bucket.png");
+	
+	bigBallCenter		= 2390;
+	bigBallTop			= 20;
+	mediumBallCenter	= 1910;
+	mediumBallTop		= 80;
+	smallBallCenter		= 2600;
+	smallBallTop		= 261;
+	reachedHeight		= false;
 }
 
 //--------------------------------------------------------------
@@ -63,35 +71,79 @@ void scenceTwo::draw(){
 	bucket.draw(rightPos+200,150, bucket.getWidth()/3, bucket.getHeight()/3);
 	
 	/////////////Get Postion to figure out where to play sound
-	ofPoint pos = ballJoints3[1].getPosition();
-	//cout << "posX is: " << pos.x << endl;
-	//cout << "posY is: " << pos.y << endl;
+	ofPoint pos = ballJoints3[1].getPosition();;
 	if(pos.x >= 1950 && pos.x <= 1970) soundSwoosh::loadSwoosh();
+	//cout << "posx is: " << pos.x<< endl;
 	
 	ofPoint pos2 = ballJoints3[5].getPosition();
-	//cout << "posX is: " << pos2.x << endl;
-	//cout << "posY is: " << pos2.y << endl;
-	if(pos2.x >= 2360 && pos2.x <= 2390) soundWoosh::loadWoosh();
+	if(pos2.x >= 2360 && pos2.x <= bigBallCenter) soundWoosh::loadWoosh();
+	
+	ofPoint pos3 = ballJoints3[3].getPosition();
+
 	
 	////////////GET Y Position to input force on ball2
-	ofPoint amount;
-	amount.x = 0;
-	amount.y = 10;
+	ofPoint forceBigBall;
+	forceBigBall.x = 10000;
+	forceBigBall.y = 0;
+	ofPoint forceMediumBall;
+	forceMediumBall.x = 400;
+	forceMediumBall.y = 0;
 	
-	ofPoint futurePos;
-	futurePos.x = pos2.x;
-	futurePos.y = 4;
-	if(pos2.y <= 10 && pos2.x <= 2390){
-		cout << "posY is: " << pos2.y << endl;
-		//ballJoints3[5].addForce(pos2, amount);
-		ballJoints3[5].setPosition(futurePos);
-		//ballJoints3[5].addAttractionPoint(futurePos, 20, 200);
+	ofPoint futurePos5;
+	futurePos5.x = pos2.x;
+	futurePos5.y = 2.2;
+	if(pos2.y <= 3 && pos2.x <= bigBallCenter){
+		//cout << "posY is: " << pos2.y << endl;
+		ballJoints3[5].setPosition(futurePos5);
 		
 	}
 	
 	
+	ofPoint futurePos1;
+	futurePos1.x = pos.x;
+	futurePos1.y = 79;
+	if(pos.y <= mediumBallTop && pos.x <= mediumBallCenter){
+		//cout << "posY is: " << pos.y << endl;
+		ballJoints3[1].setPosition(futurePos1);
+		
+	}
+	
+	ofPoint futurePos3;
+	futurePos3.x = pos3.x;
+	futurePos3.y = 260;
+	if(pos3.y <= smallBallTop && pos3.x <= smallBallCenter){
+		cout << "posY is: " << pos3.y << endl;
+		ballJoints3[3].setPosition(futurePos3);
+		
+	}
+	
+	
+	if(pos2.x <= bigBallCenter && pos2.y <= bigBallTop){
+		//ballJoints3[3].addForce(forceBigBall, pos2);
+		ballJoints3[5].addForce(forceBigBall, pos2);
 
- 
+		//cout << "posY is: " << pos2.y << endl;
+	}
+	/*
+	ofPoint posMed;
+	posMed.x = 1745;
+	posMed.y = 60;
+	if(pos.x <= mediumBallCenter && pos.y <= mediumBallTop){
+		ballJoints3[1].addForce(forceMediumBall, pos);
+		//ballJoints3[1].addRepulsionForce(posMed, 30, 2000);
+
+	}*/
+	
+	
+	////////TESTS///////
+	ballJoints3[1].body->ApplyForce(b2Vec2(400,-100), ballJoints3[1].body->GetWorldCenter());
+	//ballJoints3[3].body->ApplyForce(b2Vec2(100,0), ballJoints3[3].body->GetWorldCenter());
+	ballJoints3[5].body->ApplyForce(b2Vec2(900,-100), ballJoints3[5].body->GetWorldCenter());
+	
+	///////////DEBUG////////////
+	if(pos.y<10)reachedHeight = true;
+	else{reachedHeight = false;}
+	//cout << reachedHeight << endl;
 }
 
 //--------------------------------------------------------------

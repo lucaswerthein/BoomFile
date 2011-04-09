@@ -44,7 +44,9 @@ public:
 	int rightPos;
 	int boxW, boxH;
 	int platformW, platformH;
+	int bigBallCenter, bigBallTop, mediumBallCenter, mediumBallTop, smallBallCenter, smallBallTop;
 	ofSoundPlayer swoosh;
+	bool reachedHeight;
 
 
 
